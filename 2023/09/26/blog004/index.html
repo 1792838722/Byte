@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    
+    <title>栈与队列 | Byte</title>
+
+    <meta name="description" content="&lt;p&gt;模板留作参考&lt;/p&gt;">
+    <meta name="keywords" content="">
+
+    
+
+    <meta property="og:locale" content="en" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content= "栈与队列 | Byte"  />
+    <meta property="og:description" content= "&lt;p&gt;模板留作参考&lt;/p&gt;" />
+    <meta property="og:url" content="https://teki128.github.io/2023/09/26/blog004/index.html" />
+    <meta property="og:site_name" content="" />
+    <meta property="article:author" content="Byte" />
+    <meta property="article:publisher" content="" />
+    <meta property="og:description" content="&lt;p&gt;模板留作参考&lt;/p&gt;" />
+    <meta name="twitter:title" content="栈与队列 | Byte"/>
+    <meta name="twitter:description" content="&lt;p&gt;模板留作参考&lt;/p&gt;"/>
+    <script type="application/ld+json">
+        {
+            "description": "&lt;p&gt;模板留作参考&lt;/p&gt;",
+            "author": { "@type": "Person", "name": "Byte" },
+            "@type": "BlogPosting",
+            "url": "https://teki128.github.io/2023/09/26/blog004/index.html",
+            "publisher": {
+            "@type": "Organization",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://teki128.github.io/images/avatar.jpg"
+            },
+            "name": "Byte"
+            },
+            "headline": "栈与队列 | Byte",
+            "datePublished": "2023-09-26T06:20:29.000Z",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": "https://teki128.github.io/2023/09/26/blog004/index.html"
+            },
+            "@context": "http://schema.org"
+        }
+    </script>
+
+
+
+
+    
+
+    
+    <meta property="algolia:search" data-application-id="6NCFN8U2MS" data-api-key="1bc80358d2d824c11a97222063c41bb1" data-index-name="index">
+    
+
+    
+
+    
+
+    
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍟</text></svg>">
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://unpkg.com/disqusjs@1.3/dist/disqusjs.css">
+    
+
+    
+<link rel="stylesheet" href="/dist/build.css?v=1654266144177.css">
+
+
+    
+<link rel="stylesheet" href="/dist/custom.css?v=1654266144177.css">
+
+
+    <script>
+        window.isPost = true
+        window.aomori = {
+            
+            
+            
+            disqusjs: {
+              enable: true,
+              shortname: "byte128",
+              siteName: "byte",
+              api: "https://disqus.skk.moe/disqus/",
+              apikey: "755y8yyFcugKE4XJ7h6PVJWYZtp0mmvFZtvXn4xusOydtkCZrrOja9Y7k2UJg0qz",
+              nesting: "4",
+              nocomment: "这里冷冷清清的，一条评论都没有",
+              admin: "disqus_4AynPT8yQy",
+              adminLabel: "",
+            },
+            
+        }
+        window.aomori_logo_typed_animated = true
+        window.aomori_search_algolia = true
+
+    </script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+
+    <div class="container">
+    <header class="header">
+        <div class="header-type">
+            
+            <div class="header-type-avatar avatar avatar-sm">
+                <img src="/images/avatar.jpg" alt="Byte">
+            </div>
+            
+            <div class="header-type-inner">
+                
+                    <div id="typed-strings" style="display:none">
+                        <p>Byte</p>
+                    </div>
+                    <a class="header-type-title" id="typed" href="/"></a>
+                
+    
+                
+            </div>
+        </div>
+        <div class="header-menu">
+            <div class="header-menu-inner">
+                
+                <a href="/">主页</a>
+                
+                <a href="/archives">总览</a>
+                
+            </div>
+            <div class="header-menu-social">
+                
+    <a class="social" target="_blank" href="https://github.com/teki128">
+        <ion-icon name="logo-github"></ion-icon>
+    </a>
+
+    <a class="social" target="_blank" href="https://twitter.com/I9yuQ60LcxqDBq1">
+        <ion-icon name="logo-twitter"></ion-icon>
+    </a>
+
+    <a class="social" target="_blank" href="">
+        <ion-icon name="navigate"></ion-icon>
+    </a>
+
+            </div>
+        </div>
+
+        <div class="header-menu-mobile">
+            <div class="header-menu-mobile-inner" id="mobile-menu-open">
+                <i class="icon icon-menu"></i>
+            </div>
+        </div>
+    </header>
+
+    <div class="header-menu-mobile-menu">
+        <div class="header-menu-mobile-menu-bg"></div>
+        <div class="header-menu-mobile-menu-wrap">
+            <div class="header-menu-mobile-menu-inner">
+                <div class="header-menu-mobile-menu-close" id="mobile-menu-close">
+                    <i class="icon icon-cross"></i>
+                </div>
+                <div class="header-menu-mobile-menu-list">
+                    
+                    <a href="/">主页</a>
+                    
+                    <a href="/archives">总览</a>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+    <div class="container">
+        <div class="main">
+            <section class="inner">
+                <section class="inner-main">
+                    <div class="post">
+    <article id="post-clnlw5tuo000gpsccb63ydx0v" class="article article-type-post" itemscope
+    itemprop="blogPost">
+
+    <div class="article-inner">
+
+        
+          
+        
+        
+        
+
+        
+        <header class="article-header">
+            
+  
+    <h1 class="article-title" itemprop="name">
+      栈与队列
+    </h1>
+  
+
+        </header>
+        
+
+        <div class="article-more-info article-more-info-post hairline">
+
+            <div class="article-date">
+  <time datetime="2023-09-26T06:20:29.000Z" itemprop="datePublished">2023-09-26</time>
+</div>
+
+            
+
+            
+            <div class="article-tag">
+                <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li></ul>
+            </div>
+            
+
+            
+            <div class="article-busuanzi">
+                <span id="busuanzi_value_page_pv">N</span> 人看过
+            </div>
+            
+
+        </div>
+
+        <div class="article-entry post-inner-html hairline" itemprop="articleBody">
+            <p>模板留作参考</p>
+<span id="more"></span>
+<p>链式栈：</p>
+<pre><code class="lang-c++">#include &lt;iostream&gt;
+
+template &lt;typename ElemType&gt;
+class Node &#123;
+public:
+    ElemType data;
+    Node* next;
+    Node(ElemType data, Node* next) &#123;
+        this-&gt;data = data;
+        this-&gt;next = next;
+    &#125;
+&#125;; // Node 结点类
+
+template &lt;typename ElemType&gt;
+class Stack &#123;
+private:
+    Node&lt;ElemType&gt;* top; // 栈顶指针
+
+public:
+    Stack() &#123;
+        top = nullptr;
+    &#125; // 初始栈顶为空
+
+    ~Stack() &#123;
+        Node&lt;ElemType&gt;* p;
+        while (top != nullptr) &#123;
+            pop();
+        &#125;
+    &#125; // 清除栈
+
+    bool empty() &#123;
+        return top == nullptr;
+    &#125; // 判断栈是否为空
+
+    int size() &#123;
+        int count = 0;
+        for (Node&lt;ElemType&gt; *p = top; p != nullptr; p = p-&gt;next) &#123;
+            count++;
+        &#125;
+        return count;
+    &#125; // 返回栈中元素个数
+
+    void push(ElemType data) &#123;
+        Node&lt;ElemType&gt;* p = new Node&lt;ElemType&gt;(data, top); // 新结点的 next 指向原来的栈顶
+        top = p; // 新结点成为栈顶
+    &#125; // 入栈
+
+    bool pop() &#123;
+        if (empty()) &#123;
+            std::cout &lt;&lt; &quot;Stack is empty!&quot; &lt;&lt; std::endl;
+            return false;
+        &#125;
+        Node&lt;ElemType&gt;* p = top;
+        top = top-&gt;next;
+        delete p;
+        return true;
+    &#125; // 出栈
+
+    ElemType getTop() &#123;
+        if (empty()) &#123;
+            std::cout &lt;&lt; &quot;Stack is empty!&quot; &lt;&lt; std::endl;
+            exit(1);
+        &#125;
+        ElemType data = top-&gt;data;
+        return data;
+    &#125; // 获取栈顶元素
+&#125;; // Stack 栈类，无头结点链表，链表头为栈顶
+
+int main() &#123;
+    Stack&lt;int&gt; *s = new Stack&lt;int&gt;();
+    for (int i = 1; i &lt;= 10; i++) &#123;
+        s-&gt;push(i);
+    &#125;
+    std::cout &lt;&lt; &quot;size: &quot; &lt;&lt; s-&gt;size() &lt;&lt; std::endl;
+    while (!s-&gt;empty()) &#123;
+        std::cout &lt;&lt; s-&gt;getTop() &lt;&lt; &quot; &quot;;
+        s-&gt;pop();
+    &#125;
+    delete s;
+    return 0;
+&#125;
+</code></pre>
+<p>链队列：</p>
+<pre><code class="lang-cpp">#include &lt;iostream&gt;
+
+template &lt;typename ElemType&gt;
+class Node &#123;
+public:
+    ElemType data;
+    Node* next;
+    Node(ElemType data, Node* next) &#123;
+        this-&gt;data = data;
+        this-&gt;next = next;
+    &#125;
+&#125;; // Node 结点类
+
+template &lt;typename ElemType&gt;
+class Queue &#123;
+private:
+    Node&lt;ElemType&gt;* front; // 队头指针
+    Node&lt;ElemType&gt;* rear; // 队尾指针
+
+public:
+    Queue() &#123;
+        front = rear = nullptr;
+    &#125; // 初始队头队尾为空
+
+    ~Queue() &#123;
+        while(front != nullptr) &#123;
+            pop();
+        &#125; // 依次删除队头结点
+    &#125;
+
+    bool empty() &#123;
+        return front == nullptr;
+    &#125; // 判断队列是否为空
+
+    int size() &#123;
+        int count = 0;
+        for (Node&lt;ElemType&gt;* p = front; p != nullptr; p = p-&gt;next) &#123;
+            count++;
+        &#125;
+        return count;
+    &#125; // 返回队列中元素个数
+
+    void push_back(ElemType data) &#123;
+        Node&lt;ElemType&gt;* p = new Node&lt;ElemType&gt;(data, nullptr);
+        if (empty()) &#123;
+            front = rear = p; // 队列为空时，队头队尾都指向新结点
+        &#125; else &#123;
+            rear-&gt;next = p;
+            rear = p;
+        &#125; // 队列不为空时，队尾指向新结点
+    &#125; // 入队
+
+    bool pop() &#123;
+        if (empty()) &#123;
+            std::cout &lt;&lt; &quot;Queue is empty!&quot; &lt;&lt; std::endl;
+            return false;
+        &#125;
+        Node&lt;ElemType&gt;* p = front;
+        front = front-&gt;next;
+        delete p;
+        return true;
+    &#125; // 出队
+
+    ElemType getFront() &#123;
+        if (empty()) &#123;
+            std::cout &lt;&lt; &quot;Queue is empty!&quot; &lt;&lt; std::endl;
+            exit(1);
+        &#125;
+        ElemType data = front-&gt;data;
+        return data;
+    &#125; // 取队头元素
+&#125;;
+int main() &#123;
+    Queue&lt;int&gt; *q = new Queue&lt;int&gt;();
+    for (int i = 1; i &lt;= 10; i++) &#123;
+        q-&gt;push_back(i);
+    &#125;
+    std::cout &lt;&lt; &quot;size: &quot; &lt;&lt; q-&gt;size() &lt;&lt; std::endl;
+    while (!q-&gt;empty()) &#123;
+        std::cout &lt;&lt; q-&gt;getFront() &lt;&lt; &quot; &quot;;
+        q-&gt;pop();
+    &#125;
+    delete q;
+    return 0;
+&#125;
+</code></pre>
+<p>循环队列：</p>
+<pre><code class="lang-cpp">#include &lt;iostream&gt;
+
+template &lt;typename ElemType&gt;
+class SqQueue &#123;
+private:
+    ElemType* data; // 存放队列元素的数组
+    int front; // 队头指针
+    int rear; // 队尾指针
+    int maxSize; // 队列最大容量
+    int count = 0; // 队列元素个数
+
+public:
+    SqQueue(int maxSize) &#123;
+        this-&gt;maxSize = maxSize;
+        data = new ElemType[maxSize];
+        front = rear = 0;
+    &#125; // 构造函数
+
+    ~SqQueue() &#123;
+        delete []data;
+    &#125; // 析构函数
+
+    bool empty() &#123;
+        return count == 0;
+    &#125; // 判空
+
+    int size() &#123;
+        return count;
+    &#125; // 求队列元素个数
+
+    bool push_back(ElemType elem) &#123;
+        if (count == maxSize) &#123;
+            std::cout &lt;&lt; &quot;Queue is full!&quot; &lt;&lt; std::endl;
+            return false;
+        &#125; // 队列满
+        count ++;
+        data[rear] = elem;
+        rear = (rear + 1) % maxSize; // 队尾指针加 1, 取模是为了防止数组越界（假溢出）
+        return true;
+    &#125;
+
+    bool pop() &#123;
+        if (empty()) &#123;
+            std::cout &lt;&lt; &quot;Queue is empty!&quot; &lt;&lt; std::endl;
+            return false;
+        &#125;
+        // 这里没必要把队头元素置为 0, 因为队头指针 front 会自动加 1
+        count --;
+        front = (front + 1) % maxSize; // 队头指针加 1, 取模是为了防止数组越界（假溢出）
+        return true;
+    &#125;
+
+    ElemType getFront() &#123;
+        if (empty()) &#123;
+            std::cout &lt;&lt; &quot;Queue is empty!&quot; &lt;&lt; std::endl;
+            exit(1);
+        &#125;
+        return data[front];
+    &#125;
+&#125;;
+
+int main() &#123;
+    SqQueue&lt;int&gt; *q = new SqQueue&lt;int&gt;(8);
+    for (int i = 1; i &lt;= 10;i ++) &#123;
+        q-&gt;push_back(i);
+    &#125;
+    std::cout &lt;&lt; &quot;size: &quot; &lt;&lt; q-&gt;size() &lt;&lt; std::endl;
+    while (!q-&gt;empty()) &#123;
+        std::cout &lt;&lt; q-&gt;getFront() &lt;&lt; &quot; &quot;;
+        q-&gt;pop();
+    &#125;
+    delete q;
+    return 0;
+&#125;
+</code></pre>
+
+        </div>
+
+    </div>
+
+    
+
+    
+
+    
+
+    
+  <div class="article-copyright hairline">
+    <p>
+      本作品采用  <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/">知识共享署名-非商业性使用-禁止演绎 4.0 国际许可协议 (CC BY-NC-ND 4.0)</a> 进行许可。
+    </p>
+  </div>
+  
+
+    
+
+    
+<nav class="article-nav">
+  
+    <a href="/2023/10/10/blog004/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-caption">下一篇</div>
+      <div class="article-nav-title">
+        
+          KMP算法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2023/04/03/blog004/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-caption">上一篇</div>
+      <div class="article-nav-title">友元关系</div>
+    </a>
+  
+</nav>
+
+
+    <section class="share">
+        <div class="share-title">分享</div>
+        <a class="share-item" target="_blank"
+            href="https://twitter.com/share?text=栈与队列 - Byte&url=https%3A%2F%2Fteki128.github.io%2F2023%2F09%2F26%2Fblog004%2F">
+            <ion-icon name="logo-twitter"></ion-icon>
+        </a>
+        <a class="share-item" target="_blank"
+            href="https://www.facebook.com/sharer.php?title=栈与队列 - Byte&u=https%3A%2F%2Fteki128.github.io%2F2023%2F09%2F26%2Fblog004%2F">
+            <ion-icon name="logo-facebook"></ion-icon>
+        </a>
+        <!-- <a class="share-item" target="_blank"
+            href="https://service.weibo.com/share/share.php?title=栈与队列 - Byte&url=https://teki128.github.io/2023/09/26/blog004/&pic=">
+            <div class="n-icon n-icon-weibo"></div>
+        </a> -->
+    </section>
+
+</article>
+
+
+
+
+<section class="comments comments-disqus">
+    <div id="disqus_thread"></div>
+    <script>
+        ;(function () {
+            // DON'T EDIT BELOW THIS LINE
+            var d = document,
+                s = d.createElement('script')
+            s.src =
+                'https://byte128.disqus.com/embed.js'
+            s.setAttribute('data-timestamp', +new Date())
+            ;(d.head || d.body).appendChild(s)
+        })()
+    </script>
+</section>
+
+
+
+<section class="comments comments-disqusjs">
+    <div id="disqus_thread"></div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+</div>
+                </section>
+            </section>
+
+            
+            <aside class="sidebar sidebar-search-fix">
+                
+
+    <div class="search">
+    <div class="has-icon-right">
+        <input type="text" class="form-input" id="search" placeholder="SEARCH" autocomplete="off">
+        <div class="form-icon">
+            <ion-icon name="search"></ion-icon>
+        </div>
+    </div>
+    <div class="search-result" id="search-ps"></div>
+</div>
+
+
+<div class="widget" id="widget">
+    
+      
+  <div class="widget-wrap">
+    <div class="widget-inner">
+      <div class="toc post-toc-html"></div>
+    </div>
+  </div>
+
+    
+      
+
+    
+      
+  <div class="widget-wrap widget-tags">
+    <div class="widget-title"><span>Tags</span></div>
+    <div class="widget-inner">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-%E5%9F%BA%E7%A1%80/" rel="tag">C++基础</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hide/" rel="tag">hide</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="tag">字符串</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" rel="tag">数据结构</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B8%B8%E8%AE%B0/" rel="tag">游记</a></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget-wrap widget-recent-posts">
+    <div class="widget-title"><span>Recent Posts</span></div>
+    <div class="widget-inner">
+      <ul>
+        
+          <li>
+            <a href="/2023/10/10/blog004/">KMP算法</a>
+          </li>
+        
+          <li>
+            <a href="/2023/09/26/blog004/">栈与队列</a>
+          </li>
+        
+          <li>
+            <a href="/2023/04/03/blog004/">友元关系</a>
+          </li>
+        
+          <li>
+            <a href="/2022/12/06/blog003/">链表基础</a>
+          </li>
+        
+          <li>
+            <a href="/2022/10/31/blog000/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+    
+      
+  <div class="widget-wrap widget-archive">
+    <div class="widget-title"><span>Archive</span></div>
+    <div class="widget-inner">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/">2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/">2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/">2020</a></li></ul>
+    </div>
+  </div>
+
+
+    
+</div>
+
+<div id="backtop"><i class="icon icon-arrow-up"></i></div>
+            </aside>
+            
+        </div>
+    </div>
+
+    <footer class="footer">
+    <div class="footer-wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#3c4859" fill-opacity="1" d="M0,160L60,181.3C120,203,240,245,360,240C480,235,600,181,720,186.7C840,192,960,256,1080,261.3C1200,267,1320,213,1380,186.7L1440,160L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+    </div>
+
+    <!-- Please do not remove this -->
+    <!-- 开源不易，请勿删除 -->
+    <div class="footer-wrap">
+        <div class="footer-inner"> 
+            Byte &copy; 2024<br>
+            Powered By Hexo · Theme By <a href="https://linhong.me/" target="_blank">Aomori</a> · <a href="https://github.com/lh1me/hexo-theme-aomori" target="_blank">Github</a>
+        </div>
+    </div>
+
+</footer>
+
+<script type="module" src="https://unpkg.com/ionicons@6.0.2/dist/ionicons/ionicons.esm.js"></script>
+
+
+
+
+<script src="https://unpkg.com/disqusjs@1.3/dist/disqus.js"></script>
+
+
+
+<script src="/dist/build.js?1654266144177.js"></script>
+
+
+<script src="/dist/custom.js?1654266144177.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
+
+</html>
